@@ -14,24 +14,24 @@
             <img src="./img/logo.png" alt="LaslesVPN">
         </div>
         <nav class="nav-menu">
-            <a href="#">About</a>
-            <a href="#">Features</a>
-            <a href="#">Pricing</a>
-            <a href="#">Testimonials</a>
-            <a href="#">Help</a>
+            <a href="#about">About</a>
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#help">Help</a>
         </nav>
         <div class="auth-buttons">
-            <a href="#" class="btn-signin">Sign In</a>
-            <a href="#" class="btn-signup">Sign Up</a>
+            <a href="#" class="btn-signin" id="btn-signin">Sign In</a>
+            <a href="#" class="btn-signup" id="btn-signup">Sign Up</a>
         </div>
     </header>
 
     <main>
-        <section class="hero container">
+        <section id="about" class="hero container">
             <div class="hero-content">
                 <h1>Want anything to be easy with <strong>LaslesVPN.</strong></h1>
                 <p>Provide a network for all your needs with ease and fun using <strong>LaslesVPN</strong> discover interesting features from us.</p>
-                <a href="#" class="btn-primary shadow">Get Started</a>
+                <a href="#pricing" class="btn-primary shadow">Get Started</a>
             </div>
             <div class="hero-image">
                 <img src="./img/1.png" alt="Hero Illustration">
@@ -70,7 +70,7 @@
             </div>
         </section>
 
-        <section class="features container">
+        <section id="features" class="features container">
             <div class="features-image">
                 <img src="./img/2.png" alt="Features Illustration">
             </div>
@@ -86,107 +86,109 @@
             </div>
         </section>
 
-        <section class="pricing container text-center">
-            <h2>Choose Your Plan</h2>
-            <p class="subtitle">Let's choose the package that is best for you and explore it happily and cheerfully.</p>
-            
-            <div class="pricing-cards">
-                <div class="plan-card">
-                    <div class="plan-main">
-                        <img src="./img/box-card.png" alt="Free" class="plan-img">
-                        <h3>Free Plan</h3>
-                        <div class="plan-features">
-                            <div class="feature-item">
-                                <img src="./img/galochka2.png" alt="check">
-                                <p>Unlimited Bandwidth</p>
-                            </div>
-                            <div class="feature-item">
-                                <img src="./img/galochka2.png" alt="check">
-                                <p>Encrypted Connection</p>
-                            </div>
-                            <div class="feature-item">
-                                <img src="./img/galochka2.png" alt="check">
-                                <p>No Traffic Logs</p>
-                            </div>
-                            <div class="feature-item">
-                                <img src="./img/galochka2.png" alt="check">
-                                <p>Works on All Devices</p>
+        <section id="pricing" class="pricing">
+            <div class="container text-center">
+                <h2>Choose Your Plan</h2>
+                <p class="subtitle">Let's choose the package that is best for you and explore it happily and cheerfully.</p>
+                
+                <div class="pricing-cards">
+                    <div class="plan-card">
+                        <div class="plan-main">
+                            <img src="./img/box-card.png" alt="Free" class="plan-img">
+                            <h3>Free Plan</h3>
+                            <div class="plan-features">
+                                <div class="feature-item">
+                                    <img src="./img/galochka2.png" alt="check">
+                                    <p>Unlimited Bandwidth</p>
+                                </div>
+                                <div class="feature-item">
+                                    <img src="./img/galochka2.png" alt="check">
+                                    <p>Encrypted Connection</p>
+                                </div>
+                                <div class="feature-item">
+                                    <img src="./img/galochka2.png" alt="check">
+                                    <p>No Traffic Logs</p>
+                                </div>
+                                <div class="feature-item">
+                                    <img src="./img/galochka2.png" alt="check">
+                                    <p>Works on All Devices</p>
+                                </div>
                             </div>
                         </div>
+                        <div class="plan-bottom">
+                            <h4>Free</h4>
+                            <button class="btn-select">Select</button>
+                        </div>
                     </div>
-                    <div class="plan-bottom">
-                        <h4>Free</h4>
-                        <button class="btn-select">Select</button>
-                    </div>
-                </div>
 
-                <div class="plan-card">
-                    <div class="plan-main">
-                        <img src="./img/box-card.png" alt="Standard" class="plan-img">
-                        <h3>Standard Plan</h3>
-                        <div class="plan-features">
-                            <div class="feature-item">
-                                <img src="./img/galochka2.png" alt="check">
-                                <p>Unlimited Bandwidth</p>
-                            </div>
-                            <div class="feature-item">
-                                <img src="./img/galochka2.png" alt="check">
-                                <p>Encrypted Connection</p>
-                            </div>
-                            <div class="feature-item">
-                                <img src="./img/galochka2.png" alt="check">
-                                <p>Yes Traffic Logs</p>
-                            </div>
-                            <div class="feature-item">
-                                <img src="./img/galochka2.png" alt="check">
-                                <p>Works on All Devices</p>
-                            </div>
-                            <div class="feature-item">
-                                <img src="./img/galochka2.png" alt="check">
-                                <p>Connect Anywhere</p>
+                    <div class="plan-card">
+                        <div class="plan-main">
+                            <img src="./img/box-card.png" alt="Standard" class="plan-img">
+                            <h3>Standard Plan</h3>
+                            <div class="plan-features">
+                                <div class="feature-item">
+                                    <img src="./img/galochka2.png" alt="check">
+                                    <p>Unlimited Bandwidth</p>
+                                </div>
+                                <div class="feature-item">
+                                    <img src="./img/galochka2.png" alt="check">
+                                    <p>Encrypted Connection</p>
+                                </div>
+                                <div class="feature-item">
+                                    <img src="./img/galochka2.png" alt="check">
+                                    <p>Yes Traffic Logs</p>
+                                </div>
+                                <div class="feature-item">
+                                    <img src="./img/galochka2.png" alt="check">
+                                    <p>Works on All Devices</p>
+                                </div>
+                                <div class="feature-item">
+                                    <img src="./img/galochka2.png" alt="check">
+                                    <p>Connect Anywhere</p>
+                                </div>
                             </div>
                         </div>
+                        <div class="plan-bottom">
+                            <h4>$9 <span>/ mo</span></h4>
+                            <button class="btn-select">Select</button>
+                        </div>
                     </div>
-                    <div class="plan-bottom">
-                        <h4>$9 <span>/ mo</span></h4>
-                        <button class="btn-select">Select</button>
-                    </div>
-                </div>
 
-                <div class="plan-card active">
-                    <div class="plan-main">
-                        <img src="./img/box-card.png" alt="Premium" class="plan-img">
-                        <h3>Premium Plan</h3>
-                        <div class="plan-features">
-                            <div class="feature-item">
-                                <img src="./img/galochka2.png" alt="check">
-                                <p>Unlimited Bandwidth</p>
-                            </div>
-                            <div class="feature-item">
-                                <img src="./img/galochka2.png" alt="check">
-                                <p>Encrypted Connection</p>
-                            </div>
-                            <div class="feature-item">
-                                <img src="./img/galochka2.png" alt="check">
-                                <p>Yes Traffic Logs</p>
-                            </div>
-                            <div class="feature-item">
-                                <img src="./img/galochka2.png" alt="check">
-                                <p>Works on All Devices</p>
-                            </div>
-                            <div class="feature-item">
-                                <img src="./img/galochka2.png" alt="check">
-                                <p>Connect Anywhere</p>
-                            </div>
-                            <div class="feature-item">
-                                <img src="./img/galochka2.png" alt="check">
-                                <p>Get New Features</p>
+                    <div class="plan-card active">
+                        <div class="plan-main">
+                            <img src="./img/box-card.png" alt="Premium" class="plan-img">
+                            <h3>Premium Plan</h3>
+                            <div class="plan-features">
+                                <div class="feature-item">
+                                    <img src="./img/galochka2.png" alt="check">
+                                    <p>Unlimited Bandwidth</p>
+                                </div>
+                                <div class="feature-item">
+                                    <img src="./img/galochka2.png" alt="check">
+                                    <p>Encrypted Connection</p>
+                                </div>
+                                <div class="feature-item">
+                                    <img src="./img/galochka2.png" alt="check">
+                                    <p>Yes Traffic Logs</p>
+                                </div>
+                                <div class="feature-item">
+                                    <img src="./img/galochka2.png" alt="check">
+                                    <p>Works on All Devices</p>
+                                </div>
+                                <div class="feature-item">
+                                    <img src="./img/galochka2.png" alt="check">
+                                    <p>Connect Anywhere</p>
+                                </div>
+                                <div class="feature-item">
+                                    <img src="./img/galochka2.png" alt="check">
+                                    <p>Get New Features</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="plan-bottom">
-                        <h4>$12 <span>/ mo</span></h4>
-                        <button class="btn-select active">Select</button>
+                        <div class="plan-bottom">
+                            <h4>$12 <span>/ mo</span></h4>
+                            <button class="btn-select active">Select</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -207,7 +209,7 @@
             </div>
         </section>
 
-        <section class="testimonials">
+        <section id="testimonials" class="testimonials">
             <div class="container text-center">
                 <h2>Trusted by Thousands of Happy Customer</h2>
                 <p class="subtitle">These are the stories of our customers who have joined us with great pleasure.</p>
@@ -271,12 +273,12 @@
             </div>
         </section>
 
-        <div class="subscribe-box container shadow-box">
+        <div id="help" class="subscribe-box container shadow-box">
             <div class="sub-text">
                 <h2>Subscribe Now for Get Special Features!</h2>
                 <p>Let's subscribe with us and find the fun.</p>
             </div>
-            <a href="#" class="btn-primary shadow">Subscribe Now</a>
+            <a href="#" id="btn-subscribe" class="btn-primary shadow">Subscribe Now</a>
         </div>
     </main>
 
@@ -309,6 +311,29 @@
             </div>
         </div>
     </footer>
+
+    <div id="subscribeModal" class="modal">
+        <div class="modal-content text-center">
+            <span class="close-btn">&times;</span>
+            <h3 style="margin-bottom: 10px;">Join us on Telegram!</h3>
+            <a href="https://t.me/LastlesVPN" target="_blank" style="color: #F53838; font-weight: bold; font-size: 1.2rem;">t.me/LastlesVPN</a>
+            <br>
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://t.me/LastlesVPN" alt="QR Code" style="margin-top: 20px; border-radius: 10px;">
+        </div>
+    </div>
+
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h3 id="authTitle" style="text-align: center;">Sign In</h3>
+            <form id="authForm">
+                <input type="text" id="authUsername" placeholder="Username" required>
+                <input type="password" id="authPassword" placeholder="Password" required>
+                <button type="submit" class="btn-primary" style="width: 100%; border: none; cursor: pointer;">Submit</button>
+            </form>
+            <p id="authMessage" style="text-align: center; margin-top: 15px; font-weight: bold;"></p>
+        </div>
+    </div>
 
     <script src="./scripts/script.js"></script>
 </body>

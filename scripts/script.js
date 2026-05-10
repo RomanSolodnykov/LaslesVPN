@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // === Улучшенная Бесконечная Карусель (Центрированная) ===
+    // === Улучшенная Бесконечная Карусель ===
     const track = document.querySelector('.carousel-track');
     const originalCards = Array.from(document.querySelectorAll('.testimonial-card'));
     const nextBtn = document.querySelector('.next');
@@ -38,17 +38,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const dotsContainer = document.querySelector('.dots-container');
     const outerContainer = document.querySelector('.carousel-outer');
     
-    // 1. Создаем точки для оригинального количества карточек
     dotsContainer.innerHTML = '';
     originalCards.forEach((_, i) => {
         const dot = document.createElement('div');
         dot.classList.add('dot');
         if (i === 0) dot.classList.add('active');
         
-        // Клик по точкам
         dot.addEventListener('click', () => {
             if (isAnimating) return;
-            // Вычисляем разницу между текущим показанным клоном и нужной точкой
             const currentMod = currentIndex % originalCards.length;
             const diff = i - currentMod;
             currentIndex += diff;
@@ -59,8 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     const dots = document.querySelectorAll('.dot');
 
-    // 2. Клонируем элементы для бесконечной прокрутки без дерганий
-    // Создаем 3 одинаковых набора: [Клоны слева] + [Оригиналы] + [Клоны справа]
     originalCards.forEach(card => {
         const clone = card.cloneNode(true);
         track.appendChild(clone);
@@ -71,38 +66,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const allCards = Array.from(document.querySelectorAll('.testimonial-card'));
-    
-    // Начинаем со второго набора (Оригиналов)
     let currentIndex = originalCards.length; 
     let isAnimating = false;
 
-    // Функция обновления позиций
     function updateCarousel(instant = false) {
         if (allCards.length === 0) return;
 
         const activeCard = allCards[currentIndex];
-        
-        // Математика для центрирования активной карточки
         const cardCenterPos = activeCard.offsetLeft + (activeCard.offsetWidth / 2);
         const screenCenterPos = outerContainer.offsetWidth / 2;
         const transformValue = screenCenterPos - cardCenterPos;
 
-        // Если instant = true, мы сбрасываем transition, чтобы сделать прыжок невидимым
         track.style.transition = instant ? 'none' : 'transform 0.4s ease-in-out';
         track.style.transform = `translateX(${transformValue}px)`;
 
-        // Добавляем класс active (срабатывает CSS для увеличения карточки)
         allCards.forEach((c, i) => c.classList.toggle('active', i === currentIndex));
 
-        // Подсвечиваем нужную точку
         const dotIndex = currentIndex % originalCards.length;
         dots.forEach((dot, i) => dot.classList.toggle('active', i === dotIndex));
     }
 
-    // Инициализация при загрузке
     updateCarousel(true);
 
-    // 3. Обработка кнопок
     nextBtn.addEventListener('click', () => {
         if (isAnimating) return;
         isAnimating = true;
@@ -117,23 +102,18 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCarousel();
     });
 
-    // 4. Бесконечность: Подменяем позицию после окончания анимации
     track.addEventListener('transitionend', () => {
         isAnimating = false;
-        
-        // Если ушли слишком далеко вправо (в 3-й сет клонов)
         if (currentIndex >= originalCards.length * 2) {
-            currentIndex -= originalCards.length; // Прыгаем назад в средний сет
+            currentIndex -= originalCards.length;
             updateCarousel(true);
         } 
-        // Если ушли слишком далеко влево (в 1-й сет клонов)
         else if (currentIndex < originalCards.length) {
-            currentIndex += originalCards.length; // Прыгаем вперед в средний сет
+            currentIndex += originalCards.length;
             updateCarousel(true);
         }
     });
 
-    // 5. Обработка свайпов на телефонах
     let touchStartX = 0;
     let touchEndX = 0;
 
@@ -143,8 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     track.addEventListener('touchend', (e) => {
         touchEndX = e.changedTouches[0].screenX;
-        const threshold = 50; // Дистанция для свайпа
-        
+        const threshold = 50; 
         if (touchStartX - touchEndX > threshold) {
             if (!isAnimating) { isAnimating = true; currentIndex++; updateCarousel(); }
         }
@@ -153,8 +132,135 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, { passive: true });
 
-    // Центрировать заново при изменении размера экрана (повороте телефона)
-    window.addEventListener('resize', () => {
-        updateCarousel(true);
+    window.addEventListener('resize', () => { updateCarousel(true); });
+
+
+    // ===============================
+    // НОВЫЙ ФУНКЦИОНАЛ: МОДАЛЬНЫЕ ОКНА
+    // ===============================
+
+    const subscribeBtn = document.getElementById('btn-subscribe');
+    const btnSignIn = document.getElementById('btn-signin');
+    const btnSignUp = document.getElementById('btn-signup');
+    
+    const subscribeModal = document.getElementById('subscribeModal');
+    const authModal = document.getElementById('authModal');
+    const closeBtns = document.querySelectorAll('.close-btn');
+
+    // Форма авторизации
+    const authForm = document.getElementById('authForm');
+    const authTitle = document.getElementById('authTitle');
+    const authMessage = document.getElementById('authMessage');
+    const authUsername = document.getElementById('authUsername');
+    const authPassword = document.getElementById('authPassword');
+    
+    let currentAuthMode = 'signin'; // 'signin' или 'signup'
+
+    // Функция открытия/закрытия
+    function openModal(modal) {
+        modal.classList.add('show');
+    }
+
+    function closeModal(modal) {
+        modal.classList.remove('show');
+        authMessage.innerText = ''; // Очищаем сообщения
+        authForm.reset();
+    }
+
+    // Закрытие по крестику
+    closeBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            closeModal(e.target.closest('.modal'));
+        });
     });
+
+    // Закрытие по клику вне окна
+    window.addEventListener('click', (e) => {
+        if (e.target.classList.contains('modal')) {
+            closeModal(e.target);
+        }
+    });
+
+    // Открытие окна подписки
+    subscribeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal(subscribeModal);
+    });
+
+    // Открытие окна авторизации
+    btnSignIn.addEventListener('click', (e) => {
+        e.preventDefault();
+        currentAuthMode = 'signin';
+        authTitle.innerText = 'Sign In';
+        openModal(authModal);
+    });
+
+    btnSignUp.addEventListener('click', (e) => {
+        e.preventDefault();
+        // Если пользователь уже вошел, кнопка работает как Logout
+        if (btnSignUp.innerText === 'Logout') {
+            localStorage.removeItem('lasles_user');
+            localStorage.removeItem('lasles_pass');
+            location.reload(); // Перезагружаем страницу, чтобы вернуть кнопки
+            return;
+        }
+        currentAuthMode = 'signup';
+        authTitle.innerText = 'Sign Up';
+        openModal(authModal);
+    });
+
+    // Логика формы (LocalStorage)
+    authForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const user = authUsername.value.trim();
+        const pass = authPassword.value.trim();
+
+        if (currentAuthMode === 'signup') {
+            // Сохраняем в память браузера
+            localStorage.setItem('lasles_user', user);
+            localStorage.setItem('lasles_pass', pass);
+            authMessage.style.color = 'green';
+            authMessage.innerText = 'Success! Please Sign In.';
+            setTimeout(() => {
+                // Автоматически переключаем на окно входа
+                currentAuthMode = 'signin';
+                authTitle.innerText = 'Sign In';
+                authMessage.innerText = '';
+                authForm.reset();
+            }, 1500);
+        } else {
+            // Проверяем данные
+            const savedUser = localStorage.getItem('lasles_user');
+            const savedPass = localStorage.getItem('lasles_pass');
+
+            if (user === savedUser && pass === savedPass) {
+                authMessage.style.color = 'green';
+                authMessage.innerText = `Welcome back, ${user}!`;
+                
+                setTimeout(() => {
+                    closeModal(authModal);
+                    // Меняем кнопки в Header
+                    btnSignIn.style.display = 'none';
+                    btnSignUp.innerText = 'Logout';
+                    btnSignUp.style.background = '#F53838';
+                    btnSignUp.style.color = '#fff';
+                }, 1000);
+            } else {
+                authMessage.style.color = '#F53838'; // Красный
+                authMessage.innerText = 'Invalid username or password!';
+            }
+        }
+    });
+
+    // Проверка при загрузке страницы: если уже был залогинен
+    const savedUser = localStorage.getItem('lasles_user');
+    // Можно раскомментировать ниже, если хочешь, чтобы он оставался залогиненным после обновления
+    /*
+    if (savedUser) {
+        btnSignIn.style.display = 'none';
+        btnSignUp.innerText = 'Logout';
+        btnSignUp.style.background = '#F53838';
+        btnSignUp.style.color = '#fff';
+    }
+    */
 });

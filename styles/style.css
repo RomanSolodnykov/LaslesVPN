@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -61,6 +65,7 @@ a {
 .header .nav-menu a {
   margin: 0 15px;
   color: #0B132A;
+  transition: color 0.3s;
 }
 .header .nav-menu a:hover {
   color: #F53838;
@@ -76,6 +81,7 @@ a {
   border-radius: 50px;
   font-weight: 500;
   transition: 0.3s;
+  cursor: pointer;
 }
 .header .auth-buttons .btn-signup:hover {
   background: #F53838;
@@ -199,6 +205,7 @@ a {
 .pricing {
   background: #F8F8F8;
   padding: 100px 0 150px;
+  width: 100%;
 }
 .pricing .pricing-cards {
   display: flex;
@@ -226,6 +233,7 @@ a {
 }
 .plan-card h3 {
   margin-bottom: 30px;
+  color: #0B132A;
 }
 .plan-card.active {
   border-color: #F53838;
@@ -276,6 +284,9 @@ a {
 .network {
   padding: 150px 0;
 }
+.network h2 {
+  color: #0B132A;
+}
 .network .map-box {
   margin: 60px 0;
 }
@@ -296,6 +307,9 @@ a {
 .testimonials {
   position: relative;
   overflow: hidden;
+}
+.testimonials h2 {
+  color: #0B132A;
 }
 .testimonials::before, .testimonials::after {
   content: "";
@@ -322,6 +336,7 @@ a {
   display: inline-flex;
   gap: 30px;
   will-change: transform;
+  padding: 40px 0;
 }
 
 .testimonial-card {
@@ -373,7 +388,8 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
+  margin-top: -20px;
+  margin-bottom: 50px;
 }
 .carousel-controls .dots-container {
   display: flex;
@@ -459,8 +475,78 @@ a {
 .footer .footer-links .link-column a {
   margin: 8px 0;
   font-size: 0.9rem;
+  color: #0B132A;
+}
+.footer .footer-links .link-column a:hover {
+  color: #F53838;
 }
 
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(11, 19, 42, 0.6);
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+.modal.show {
+  display: flex;
+  opacity: 1;
+}
+.modal .modal-content {
+  background-color: #FFFFFF;
+  padding: 40px;
+  border-radius: 10px;
+  position: relative;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.3s ease-out;
+}
+.modal .modal-content h3 {
+  color: #0B132A;
+}
+.modal .modal-content input {
+  width: 100%;
+  padding: 15px;
+  margin-top: 15px;
+  border: 1px solid #DDDDDD;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+.modal .modal-content input:focus {
+  border-color: #F53838;
+}
+.modal .close-btn {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #4F5665;
+  transition: color 0.3s;
+}
+.modal .close-btn:hover {
+  color: #F53838;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 @media (max-width: 992px) {
   .header .burger {
     display: flex;
@@ -573,7 +659,6 @@ a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 30px;
     gap: 25px;
   }
   .carousel-controls .arrows {
